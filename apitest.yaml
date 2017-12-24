@@ -1,0 +1,36 @@
+
+- config:
+  - testset: "Quickstart app tests"
+
+- test:
+  - group: "Quickstart"
+  - name: "Test id"
+  - url: "/id/333"
+  - method: "GET"
+  - headers: {'Content-Type': 'application/json'}
+  - expected_status: [200]
+  - validators:
+    # Check the user name matches
+    - compare: {jsonpath_mini: "ip", comparator: "eq", expected: '88.157.166.210'}
+    - compare: {jsonpath_mini: "value", comparator: "eq", expected: 333}
+
+- test:
+  - group: "Quickstart"
+  - name: "Test Home"
+  - url: "/"
+  - method: "GET"
+  - headers: {'Content-Type': 'application/json'}
+  - expected_status: [302]
+  - validators:
+    - compare: {jsonpath_mini: "ip", comparator: "eq", expected: '88.157.166.210'}
+    - compare: {jsonpath_mini: "logged", comparator: "eq", expected: 'alessio.battistutta'}
+
+- test:
+  - group: "Quickstart"
+  - name: "Test Login"
+  - url: "/login"
+  - method : "PUT"
+  - headers: {'Content-Type': 'application/json'}
+  - body: '{"username": "Alessio","password": "MyPassword"}'
+  - validators:
+    - extract_test: {jsonpath_mini: "key",  test: "exists"}
