@@ -7,6 +7,13 @@ Development of web scraper wit output on word wall
 
 # Code Example
 
+Login :
+
+    <applicationurl>/login
+    return : 
+    {
+    
+    }
 
 # Motivation
 
@@ -22,6 +29,10 @@ use this standard library :
 - pycrypto
 
 Google Could Datastore for user management
+
+Every api call have a time based appkey, the default expiration
+is 15 minutes.
+
 
 
 # API Reference
